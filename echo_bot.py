@@ -1,6 +1,7 @@
 import telebot
+from decouple import config
 
-bot = telebot.TeleBot("577876202:AAHh-tDh1SjhRoizcaNXCworPnLrYyhUYj8")
+bot = telebot.TeleBot(config('TOKEN'))
 
 @bot.message_handler(commands=['start', 'help'])
 def send_welcome(message):
