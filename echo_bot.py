@@ -1,3 +1,5 @@
+import time
+
 import telebot
 from decouple import config
 
@@ -19,7 +21,14 @@ def echo_all(message):
     bot.reply_to(message, message.text)
 
 def main():
-    bot.polling()
+    #telegram closes connections every hour or so:
+    # youtube talking about that: https://www.youtube.com/watch?v=jhFsFZXZbu4 
+    # I use the code below to solve the problem 
+    while True:
+        try:
+            bot.polling()
+        except Exception as e:
+            time.sleep(15)
 
 if __name__ == '__main__':
     main()
